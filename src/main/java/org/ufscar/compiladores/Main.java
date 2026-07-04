@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 public class Main {
     public static void main(String[] args) {
         if (args.length < 2) {
-            System.err.println("Uso esperado: java -jar T6-MiauCafe.jar <entrada.txt> <saida.json>");
+            System.err.println("Uso esperado: java -jar T6-MiauCafe-jar-with-dependencies.jar <arquivo_entrada> <arquivo_saida>");
             System.exit(1);
         }
 
@@ -19,26 +19,42 @@ public class Main {
 
         try (PrintWriter pw = new PrintWriter(arquivoSaida)) {
 
-            // LEXICO E SINTATICO
+            //SINTATICO E LEXICO
             CharStream cs = CharStreams.fromFileName(arquivoEntrada);
             MiauDataLexer lexer = new MiauDataLexer(cs);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             MiauDataParser parser = new MiauDataParser(tokens);
 
+            MiauErrorListener errorListener = new MiauErrorListener();
+
+            //ERROS
+            lexer.removeErrorListeners();
+            lexer.addErrorListener(errorListener);
+            parser.removeErrorListeners();
+            parser.addErrorListener(errorListener);
 
             MiauDataParser.ProgramaContext arvore = parser.programa();
+
+            if (!errorListener.errosSintaticos.isEmpty()) {
+                for (String erro : errorListener.errosSintaticos) {
+                    pw.println(erro);
+                    System.out.println(erro);
+                }
+                pw.println("Fim da compilacao. Erros sintaticos encontrados.");
+                return;
+            }
 
             // SEMANTICO
             SemanticoVisitor semantico = new SemanticoVisitor();
             semantico.visit(arvore);
 
-            // GERADOR DE CODIGO
+            // CODIGO
             if (!semantico.errosSemanticos.isEmpty()) {
                 for (String erro : semantico.errosSemanticos) {
                     pw.println(erro);
                     System.out.println(erro);
                 }
-                pw.println("Fim da compilacao por erros.");
+                pw.println("Fim da compilacao. Erros semanticos encontrados.");
             } else {
                 GeradorJsonVisitor gerador = new GeradorJsonVisitor();
                 gerador.visit(arvore);
