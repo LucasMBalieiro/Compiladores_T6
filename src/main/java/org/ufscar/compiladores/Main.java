@@ -4,18 +4,20 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Main {
     public static void main(String[] args) {
-        if (args.length < 2) {
-            System.err.println("Uso esperado: java -jar T6-MiauCafe-jar-with-dependencies.jar <arquivo_entrada> <arquivo_saida>");
+        if (args.length < 1) {
+            System.err.println("Uso esperado: java -jar MiauCompiler.jar <arquivo_entrada> [diretorio_saida_opcional]");
             System.exit(1);
         }
 
         String arquivoEntrada = args[0];
-        String arquivoSaida = args[1];
+
+        String arquivoSaida = getArquivoSaida(args);
 
         try (PrintWriter pw = new PrintWriter(arquivoSaida)) {
 
@@ -68,5 +70,20 @@ public class Main {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    private static String getArquivoSaida(String[] args) {
+        String arquivoSaida = "custom.json";
+
+        if (args.length >= 2) {
+            File pastaDestino = new File(args[1]);
+
+            if (!pastaDestino.exists()) {
+                pastaDestino.mkdirs();
+            }
+
+            arquivoSaida = new File(pastaDestino, "custom.json").getPath();
+        }
+        return arquivoSaida;
     }
 }
