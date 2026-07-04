@@ -1,7 +1,7 @@
 package org.ufscar.compiladores.dto;
 
 public class IngredienteDTO {
-    public String id; // Nome do ScriptableObject na Unity
+    public String id;
     public String tipo;
     public int tier;
 
