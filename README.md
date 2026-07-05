@@ -16,7 +16,7 @@ Para rodar, apenas coloque o arquivo custom.json gerado pelo JAR no diretório
 base do jogo (junto do executável). 
 
 ## Vídeo demonstrando o uso
-TODO: colocar o video do youtube
+[Trabalho Compiladores - Miau Cafe](https://www.youtube.com/watch?v=Qkiar_3VG5c)
 
 ---
 
