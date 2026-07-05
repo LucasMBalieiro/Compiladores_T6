@@ -1,0 +1,39 @@
+Ingrediente CafeBase {
+    tipo: Cafe;
+    tier: 1;
+}
+
+Ingrediente BoloBase {
+    tipo: Bolo;
+    tier: 1;
+}
+
+Ingrediente PaoInexistente {
+    tipo: Pao;
+    //ERRO AQUI
+    tier: 4;
+}
+
+
+Pedido SoCafe {
+    valor: 10;
+    tempo: 20.0;
+    itens: {
+        CafeBase: 1;
+    }
+}
+
+Pedido CafeDaManhaBase {
+    valor: 25;
+    tempo: 45.5;
+    itens: {
+        CafeBase: 1;
+        PaoInexistente: 1;
+    }
+}
+
+Spawner TierInexistente {
+    Dia {
+        clientes: [SoCafe, CafeDaManhaBase];
+    }
+}

@@ -1,0 +1,33 @@
+Ingrediente CafeBase {
+    tipo: Cafe;
+    tier: 1;
+}
+
+//ERRO AQUI
+Ingrediwnte BoloBase {
+    tipo: Bolo;
+    tier: 1;
+}
+
+Pedido SoCafe {
+    valor: 10;
+    tempo: 20.0;
+    itens: {
+        CafeBase: 1;
+    }
+}
+
+Pedido CafeDaManhaBase {
+    valor: 25;
+    tempo: 45.5;
+    itens: {
+        CafeBase: 1;
+        BoloBase: 1;
+    }
+}
+
+Spawner EscritaErrada {
+    Dia {
+        clientes: [SoCafe, CafeDaManhaBase];
+    }
+}

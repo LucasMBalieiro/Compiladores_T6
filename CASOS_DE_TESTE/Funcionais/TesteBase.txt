@@ -1,0 +1,50 @@
+
+// DECLARACAO INGREDIENTES
+// Tipos possiveis: Cafe, Bolo, Sorvete, Pao
+// Tiers possiveis: 0-3
+
+Ingrediente CafeT1 {
+    tipo: Cafe;
+    tier: 1;
+}
+
+Ingrediente BoloT3 {
+    tipo: Bolo;
+    tier: 3;
+}
+
+// DECLARACAO PEDIDOS
+// Valor: inteiro
+// Tempo: float
+// Itens: lista de Ingredientes
+
+Pedido ComboMatinal {
+    valor: 25;
+    tempo: 45.5;
+    itens: {
+        CafeT1: 1;
+        BoloT3: 1;
+    }
+}
+
+Pedido CafeRapido {
+    valor: 8;
+    tempo: 15.0;
+    itens: {
+        CafeT1: 2;
+    }
+}
+
+// DECLARACAO SPAWNER
+//Dia: armazena clientes
+//Clientes: lista de Pedidos
+
+
+Spawner TesteBase {
+    Dia {
+        clientes: [ComboMatinal, CafeRapido, CafeRapido];
+    }
+    Dia {
+        clientes: [ComboMatinal, ComboMatinal, ComboMatinal];
+    }
+}

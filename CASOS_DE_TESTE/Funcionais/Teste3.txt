@@ -1,0 +1,37 @@
+Ingrediente CafeT1 {
+    tipo: Cafe;
+    tier: 1;
+}
+
+Ingrediente PaoT2 {
+    tipo: Pao;
+    tier: 2;
+}
+
+Pedido MuitoPao {
+    valor: 99;
+    tempo: 10.0;
+    itens: {
+        PaoT2: 99;
+        PaoT2: 99;
+    }
+}
+
+Pedido MuitoCafe {
+    valor: 8;
+    tempo: 15.75;
+    itens: {
+        CafeT1: 99;
+        CafeT1: 99;
+        CafeT1: 99;
+    }
+}
+
+Spawner Teste3 {
+    Dia {
+        clientes: [MuitoPao, MuitoCafe, MuitoCafe];
+    }
+    Dia {
+        clientes: [MuitoPao, MuitoPao, MuitoCafe];
+    }
+}

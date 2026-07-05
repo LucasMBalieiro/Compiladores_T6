@@ -1,0 +1,78 @@
+Ingrediente CafeBase {
+    tipo: Cafe;
+    tier: 1;
+}
+
+Ingrediente CafeGrande {
+    tipo: Cafe;
+    tier: 2;
+}
+
+Ingrediente SorveteCasquinha {
+    tipo: Sorvete;
+    tier: 2;
+}
+
+Ingrediente SorveteGourmet {
+    tipo: Sorvete;
+    tier: 3;
+}
+
+Ingrediente BoloMorango {
+    tipo: Bolo;
+    tier: 2;
+}
+
+Ingrediente BoloNoPote {
+    tipo: Bolo;
+    tier: 3;
+}
+
+Pedido SoCafe {
+    valor: 10;
+    tempo: 20.0;
+    itens: {
+        CafeBase: 1;
+    }
+}
+
+Pedido CafeDaManhaBase {
+    valor: 25;
+    tempo: 45.5;
+    itens: {
+        CafeGrande: 1;
+        BoloMorango: 1;
+    }
+}
+
+Pedido MixSorvete {
+    valor: 50;
+    tempo: 60.0;
+    itens: {
+        SorveteCasquinha: 2;
+        SorveteGourmet: 1;
+    }
+}
+
+Pedido UmDeCada {
+    valor: 38;
+    tempo: 72.5;
+    itens: {
+        CafeBase: 1;
+        BoloMorango: 1;
+        SorveteCasquinha: 1;
+    }
+}
+
+
+Spawner Teste2 {
+    Dia {
+        clientes: [SoCafe, SoCafe, CafeDaManhaBase, UmDeCada, MixSorvete];
+    }
+    Dia {
+        clientes: [CafeDaManhaBase, UmDeCada, CafeDaManhaBase, SoCafe, MixSorvete, SoCafe];
+    }
+    Dia {
+        clientes: [MixSorvete, MixSorvete, UmDeCada, UmDeCada, UmDeCada, MixSorvete];
+    }
+}
